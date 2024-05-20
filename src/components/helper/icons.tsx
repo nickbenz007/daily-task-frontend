@@ -9,7 +9,7 @@ type IconProps = {
 
 type IconNames = 'home' | 'completed' | 'categories' | 'today';
 
-const Home = ({width = 24, height = 24, color = 'black'}: IconProps) => (
+const Home = ({width = 35, height = 35, color = 'black'}: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 19 20" fill="none">
     <Path
       d="M8.92527 1.40363L0.925273 7.02207C0.658682 7.20929 0.5 7.51464 0.5 7.84041V18C0.5 18.5523 0.947715 19 1.5 19H9.5H17.5C18.0523 19 18.5 18.5523 18.5 18V7.84041C18.5 7.51464 18.3413 7.20929 18.0747 7.02207L10.0747 1.40363C9.72985 1.16143 9.27015 1.16143 8.92527 1.40363Z"
@@ -18,7 +18,7 @@ const Home = ({width = 24, height = 24, color = 'black'}: IconProps) => (
   </Svg>
 );
 
-const Completed = ({width = 24, height = 24, color = 'black'}: IconProps) => (
+const Completed = ({width = 35, height = 35, color = 'black'}: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 19 18" fill="none">
     <Circle cx="9.5" cy="9" r="8.5" stroke="#939292" />
     <Path
@@ -29,7 +29,7 @@ const Completed = ({width = 24, height = 24, color = 'black'}: IconProps) => (
   </Svg>
 );
 
-const Today = ({width = 24, height = 24, color = 'black'}: IconProps) => (
+const Today = ({width = 35, height = 35, color = 'black'}: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 19 18" fill="none">
     <Path
       d="M18.5 7.06702V2.19507C18.5 1.64278 18.0523 1.19507 17.5 1.19507H9.5H1.5C0.947715 1.19507 0.5 1.64278 0.5 2.19507V7.06702M18.5 7.06702V15.9999C18.5 16.5522 18.0523 16.9999 17.5 16.9999H9.5H1.5C0.947715 16.9999 0.5 16.5522 0.5 15.9999V7.06702M18.5 7.06702H0.5"
@@ -38,7 +38,7 @@ const Today = ({width = 24, height = 24, color = 'black'}: IconProps) => (
   </Svg>
 );
 
-const Categories = ({width = 24, height = 24, color = 'black'}: IconProps) => (
+const Categories = ({width = 35, height = 35, color = 'black'}: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
     <Path
       d="M6.71428 1H3C1.89543 1 1 1.89543 1 3V6.2C1 7.30457 1.89543 8.2 3 8.2H6.71429C7.81886 8.2 8.71429 7.30457 8.71429 6.2V3C8.71429 1.89543 7.81885 1 6.71428 1Z"

@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import theme from '../theme';
+import theme from '../../utils/theme';
 
 type SafeAreaWrapperProps = {
   children: React.ReactNode;
