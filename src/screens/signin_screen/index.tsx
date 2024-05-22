@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Text} from '@/utils/theme';
 import {useNavigation} from '@react-navigation/native';
 import {AuthScreenType} from '@/navigation/type.tsx';
@@ -38,7 +38,6 @@ const SignInScreen = () => {
         email: email.toLowerCase(),
         password: password.trim().toLowerCase(),
       });
-      console.log(_user);
       updateUser({
         email: _user.email,
         name: _user.name,
@@ -47,7 +46,7 @@ const SignInScreen = () => {
       setErrorMessage('');
     } catch (error) {
       console.log('Error during signing in', error);
-      setErrorMessage(errors || 'An unknown error occurred');
+      setErrorMessage(errors.message || 'An unknown error occurred');
     }
   };
 

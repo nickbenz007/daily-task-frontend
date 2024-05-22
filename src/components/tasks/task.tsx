@@ -98,7 +98,7 @@ export const Task = ({task, mutateTasks}: TaskProps) => {
           elevation={3}
           shadowOffset={{width: 3, height: 3}}
           shadowOpacity={0.6}
-          shadowColor={Platform.OS === 'ios' ? 'gray300' : 'gray400'}
+          shadowColor={Platform.OS === 'ios' ? 'gray100' : 'gray100'}
           shadowRadius={6}>
           <Box flexDirection={'row'} alignItems={'center'}>
             <AnimatedBox

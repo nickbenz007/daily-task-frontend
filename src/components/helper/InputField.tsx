@@ -15,6 +15,7 @@ const InputField = ({placeholder, label, error, ...props}: InputFieldProps) => {
         {label}
       </Text>
       <TextInput
+        placeholderTextColor={'black'}
         placeholder={placeholder}
         style={{
           paddingVertical: 14,
@@ -23,6 +24,7 @@ const InputField = ({placeholder, label, error, ...props}: InputFieldProps) => {
           borderStyle: 'dashed',
           borderWidth: 1,
           borderRadius: theme.borderRadii['rounded-7xl'],
+          color: 'black',
         }}
         {...props}
       />

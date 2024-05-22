@@ -106,6 +106,7 @@ export const TasksActions = ({categoryId}: TaskActionsProps) => {
             fontSize: 16,
             fontWeight: '600',
             width: '50%',
+            color: 'black',
           }}
           value={newTask.name}
           onChangeText={text =>
@@ -157,7 +158,11 @@ export const TasksActions = ({categoryId}: TaskActionsProps) => {
                 }}
                 mr={'1'}
               />
-              <Text variant={'textSm'} mx={'1'} fontWeight={'600'}>
+              <Text
+                variant={'textSm'}
+                mx={'1'}
+                fontWeight={'600'}
+                color={'black'}>
                 {selectedCategory?.name}
               </Text>
             </Box>
@@ -182,6 +187,7 @@ export const TasksActions = ({categoryId}: TaskActionsProps) => {
                     setIsSelectingCategory(false);
                   }}>
                   <Box
+                    width={120}
                     bg={'gray200'}
                     px={'4'}
                     py={'3'}
@@ -200,7 +206,7 @@ export const TasksActions = ({categoryId}: TaskActionsProps) => {
                     <Box flexDirection={'row'}>
                       <Text style={{fontSize: 16}}>{item.icon.symbol}</Text>
                       <Text
-                        style={{fontSize: 16}}
+                        style={{fontSize: 16, color: 'black'}}
                         mx={'2'}
                         fontWeight={
                           newTask.categoryId === item._id ? '800' : '500'

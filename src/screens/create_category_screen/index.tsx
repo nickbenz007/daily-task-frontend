@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SafeAreaWrapper from '@/components/helper/SafeAreaWrapper.tsx';
 import {Box, Text, Theme} from '@/utils/theme';
 import NavigateBack from '@/components/helper/navigate_back.tsx';
@@ -78,7 +78,7 @@ const CreateCategoryScreen = () => {
 
   const {mutate: mutate} = useSWRConfig();
 
-  const [createCategory, setCreateCategory] = React.useState<
+  const [createCategory, setCreateCategory] = useState<
     Omit<ICategory, '_id' | 'user' | 'isEditable'>
   >({
     name: route.params.category?.name ?? '',
@@ -177,6 +177,7 @@ const CreateCategoryScreen = () => {
               lineHeight: 20,
               paddingHorizontal: 20,
               paddingVertical: 20,
+              color: 'black',
             }}
             onChangeText={text => {
               setCreateCategory(prevState => {

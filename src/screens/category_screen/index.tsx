@@ -45,7 +45,7 @@ const CategoryScreen = () => {
             variant={'text2Xl'}
             fontWeight={'700'}
             style={{
-              color: category?.color.code,
+              color: category ? category?.color.code : 'black',
             }}>
             {category?.name}
           </Text>

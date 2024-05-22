@@ -18,7 +18,6 @@ const today = new Date();
 
 const HomeScreen = () => {
   const {user} = useGlobalUserStore();
-  console.log('response', JSON.stringify(user, null, 2));
 
   const {
     data: tasks,

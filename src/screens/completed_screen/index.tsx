@@ -29,7 +29,7 @@ const CompletedScreen = () => {
           borderColor={'green600'}
           borderBottomWidth={2}
           py={'2'}>
-          <Text variant="text2Xl" fontWeight="700">
+          <Text variant="text2Xl" fontWeight="700" color={'black'}>
             Completed Tasks
           </Text>
         </Box>
