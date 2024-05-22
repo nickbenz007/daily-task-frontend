@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Text} from '@/utils/theme';
 import {useNavigation} from '@react-navigation/native';
-import {AuthScreenType} from '@/navigation/type.tsx';
+import {AuthScreenNavigationType} from '@/navigation/type.tsx';
 import SafeAreaWrapper from '@/components/helper/SafeAreaWrapper.tsx';
 import PressableView from '@/components/helper/PressableView.tsx';
 import InputField from '@/components/helper/InputField.tsx';
@@ -10,7 +10,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {IUser} from '@/types';
 
 const SignUpScreen = () => {
-  const navigation = useNavigation<AuthScreenType<'SignIn'>>();
+  const navigation = useNavigation<AuthScreenNavigationType<'SignIn'>>();
   const navigateToSignInScreen = () => {
     navigation.navigate('SignIn');
   };
@@ -28,7 +28,6 @@ const SignUpScreen = () => {
   });
 
   const onSubmit = async (data: IUser) => {
-    console.log(data);
     try {
       const {name, email, password} = data;
       const response = await signUpUser({
@@ -38,7 +37,6 @@ const SignUpScreen = () => {
       });
       reset();
       navigateToSignInScreen();
-      console.log(response, 'Response');
       return response;
     } catch (error) {
       console.error(error);

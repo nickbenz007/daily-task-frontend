@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Text, AnimatedBox, AnimatedText} from '@/utils/theme';
+import {Box, Text, AnimatedText} from '@/utils/theme';
 import SafeAreaWrapper from '@/components/helper/SafeAreaWrapper.tsx';
 import useGlobalUserStore from '@/store/useGlobalUserStore.ts';
 import {TasksActions} from '@/components/tasks/tasks_actions.tsx';
@@ -7,23 +7,41 @@ import useSWR from 'swr';
 import {ITask} from '@/types';
 import {fetcher} from '@/services/config.ts';
 import {Loader} from '@/components/helper/Loader.tsx';
-import {FlatList} from 'react-native';
+import {FlatList, Pressable} from 'react-native';
 import {Task} from '@/components/tasks/task.tsx';
 import {getGreetings} from '@/utils/helpers';
 import {format} from 'date-fns';
 import {FadeInRight} from 'react-native-reanimated';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {AppStackParamList} from '@/navigation/type.tsx';
 
 const greetings = getGreetings({hour: new Date().getHours()});
 const today = new Date();
 
 const HomeScreen = () => {
-  const {user} = useGlobalUserStore();
+  const navigation = useNavigation<AppStackParamList>();
+  const {user, updateUser} = useGlobalUserStore();
 
   const {
     data: tasks,
     isLoading,
     mutate: mutateTasks,
   } = useSWR<ITask[]>('tasks/', fetcher);
+
+  const navigateToSignInScreen = () => {
+    navigation.navigate('Root', {screen: 'SignIn'});
+  };
+
+  const logOutUser = async () => {
+    try {
+      await AsyncStorage.removeItem('token');
+      updateUser(null);
+      navigateToSignInScreen();
+    } catch (error) {
+      console.log('An error occurred while logging Out', error);
+    }
+  };
 
   if (isLoading || !tasks) {
     return <Loader />;
@@ -32,31 +50,51 @@ const HomeScreen = () => {
   return (
     <SafeAreaWrapper>
       <Box flex={1}>
-        <Box p={'4'}>
-          <AnimatedText entering={FadeInRight.delay(500).duration(700)}>
+        <Box flexDirection={'row'} justifyContent={'space-between'}>
+          <Box p={'4'}>
+            <AnimatedText entering={FadeInRight.delay(500).duration(700)}>
+              <Text
+                variant={'text2Xl'}
+                fontWeight={'600'}
+                color={'black'}
+                textTransform={'capitalize'}>
+                Good {greetings} {user && user?.name}
+              </Text>
+            </AnimatedText>
             <Text
               variant={'text2Xl'}
               fontWeight={'600'}
               color={'black'}
               textTransform={'capitalize'}>
-              Good {greetings} {user && user?.name}
+              It's {format(today, 'eeee, LLL dd')}
             </Text>
-          </AnimatedText>
-          <Text
-            variant={'text2Xl'}
-            fontWeight={'600'}
-            color={'black'}
-            textTransform={'capitalize'}>
-            It's {format(today, 'eeee, LLL dd')}
-          </Text>
-          <Text
-            py={'3'}
-            variant={'textXl'}
-            fontWeight={'600'}
-            color={'black'}
-            textTransform={'capitalize'}>
-            You have {tasks?.tasks.length} Tasks.
-          </Text>
+            <Text
+              py={'3'}
+              variant={'textXl'}
+              fontWeight={'600'}
+              color={'black'}
+              textTransform={'capitalize'}>
+              You have {tasks?.tasks.length} Tasks.
+            </Text>
+          </Box>
+          <Box m={'2'} alignItems={'center'}>
+            <Pressable
+              onPress={logOutUser}
+              style={{
+                paddingHorizontal: 14,
+                paddingVertical: 7,
+                backgroundColor: 'crimson',
+                borderRadius: 50,
+              }}>
+              <Text
+                variant={'textSm'}
+                fontWeight={'500'}
+                color={'white'}
+                textAlign={'center'}>
+                Logout
+              </Text>
+            </Pressable>
+          </Box>
         </Box>
         <TasksActions categoryId={''} />
         <Box height={14} />

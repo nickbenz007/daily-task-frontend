@@ -36,7 +36,12 @@ const CategoriesScreen = () => {
   return (
     <SafeAreaWrapper>
       <Box flex={1} px={'2'}>
-        <Text variant={'text2Xl'} color={'black'} fontWeight={'700'} my={'2'}>
+        <Text
+          variant={'text2Xl'}
+          color={'black'}
+          fontWeight={'700'}
+          my={'2'}
+          p={'4'}>
           Categories
         </Text>
         <FlatList
