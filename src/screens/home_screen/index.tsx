@@ -54,7 +54,7 @@ const HomeScreen = () => {
           <Box p={'4'}>
             <AnimatedText entering={FadeInRight.delay(500).duration(700)}>
               <Text
-                variant={'text2Xl'}
+                variant={'textXl'}
                 fontWeight={'600'}
                 color={'black'}
                 textTransform={'capitalize'}>
@@ -77,7 +77,7 @@ const HomeScreen = () => {
               You have {tasks?.tasks.length} Tasks.
             </Text>
           </Box>
-          <Box m={'2'} alignItems={'center'}>
+          <Box mx={'2'} my={'3'} alignItems={'center'}>
             <Pressable
               onPress={logOutUser}
               style={{
@@ -88,7 +88,7 @@ const HomeScreen = () => {
               }}>
               <Text
                 variant={'textSm'}
-                fontWeight={'500'}
+                fontWeight={'700'}
                 color={'white'}
                 textAlign={'center'}>
                 Logout

@@ -93,7 +93,7 @@ const EditTaskScreen = () => {
   }
   return (
     <SafeAreaWrapper>
-      <Box mx={'2'}>
+      <Box mx={'2'} p={'2'}>
         <Box
           mt={'2'}
           flexDirection={'row'}
@@ -140,6 +140,7 @@ const EditTaskScreen = () => {
               fontSize: 16,
               fontWeight: '400',
               width: '50%',
+              color: 'black',
             }}
             value={updatedTask.name}
             onChangeText={text =>
@@ -195,68 +196,62 @@ const EditTaskScreen = () => {
                   }}
                   mr={'1'}
                 />
-                <Text mx={'1'} fontWeight={'600'}>
+                <Text mx={'1'} fontWeight={'600'} color={'black'}>
                   {selectedCategory?.name}
                 </Text>
               </Box>
             </TouchableOpacity>
           </Box>
-          {isSelectingCategory && (
-            <Box zIndex={1} position={'absolute'} right={10} bottom={-200}>
-              <FlatList
-                data={categories?.categories}
-                keyExtractor={item => item._id}
-                renderItem={({item, index}) => {
-                  return (
-                    <Pressable
-                      onPress={() => {
-                        setUpdatedTask(prevState => {
-                          return {
-                            ...prevState,
-                            categoryId: item._id,
-                          };
-                        });
-                        setIsSelectingCategory(false);
-                      }}>
-                      <Box
-                        bg={'gray200'}
-                        p={'2'}
-                        borderBottomStartRadius={
-                          categories?.categories.length - 1 === index
-                            ? 'rounded-xl'
-                            : 'none'
-                        }
-                        borderBottomEndRadius={
-                          categories?.categories.length - 1 === index
-                            ? 'rounded-xl'
-                            : 'none'
-                        }
-                        borderTopStartRadius={
-                          index === 0 ? 'rounded-xl' : 'none'
-                        }
-                        borderTopEndRadius={
-                          index === 0 ? 'rounded-xl' : 'none'
-                        }>
-                        <Box flexDirection={'row'}>
-                          <Text>{item.icon.symbol}</Text>
-                          <Text
-                            mx={'3'}
-                            fontWeight={
-                              updatedTask.categoryId === item._id
-                                ? '700'
-                                : '400'
-                            }>
-                            {item.name}
-                          </Text>
-                        </Box>
-                      </Box>
-                    </Pressable>
-                  );
-                }}
-              />
-            </Box>
-          )}
         </Box>
+        {isSelectingCategory && (
+          <Box alignItems={'flex-end'} justifyContent={'center'} my={'2'}>
+            <FlatList
+              data={categories?.categories}
+              keyExtractor={item => item._id}
+              renderItem={({item, index}) => {
+                return (
+                  <Pressable
+                    onPress={() => {
+                      setUpdatedTask(prevState => {
+                        return {
+                          ...prevState,
+                          categoryId: item._id,
+                        };
+                      });
+                      setIsSelectingCategory(false);
+                    }}>
+                    <Box
+                      bg={'gray200'}
+                      p={'2'}
+                      borderBottomStartRadius={
+                        categories?.categories.length - 1 === index
+                          ? 'rounded-xl'
+                          : 'none'
+                      }
+                      borderBottomEndRadius={
+                        categories?.categories.length - 1 === index
+                          ? 'rounded-xl'
+                          : 'none'
+                      }
+                      borderTopStartRadius={index === 0 ? 'rounded-xl' : 'none'}
+                      borderTopEndRadius={index === 0 ? 'rounded-xl' : 'none'}>
+                      <Box flexDirection={'row'}>
+                        <Text>{item.icon.symbol}</Text>
+                        <Text
+                          mx={'3'}
+                          fontWeight={
+                            updatedTask.categoryId === item._id ? '700' : '400'
+                          }>
+                          {item.name}
+                        </Text>
+                      </Box>
+                    </Box>
+                  </Pressable>
+                );
+              }}
+            />
+          </Box>
+        )}
         {isSelectingDate && (
           <Box>
             <Calendar

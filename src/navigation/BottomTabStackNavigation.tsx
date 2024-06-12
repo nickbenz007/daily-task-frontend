@@ -1,3 +1,4 @@
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigation from './HomeStackNavigation.tsx';
 import TodayScreen from '@/screens/today_screen';

@@ -58,10 +58,7 @@ export const Task = ({task, mutateTasks}: TaskProps) => {
         (offset.value = 1.1), (tikIconSize.value = 1);
       }
     } catch (error) {
-      console.log(
-        error?.message,
-        'An error occurred while toggling task status',
-      );
+      console.log(error, 'An error occurred while toggling task status');
     }
   };
 
